@@ -67,58 +67,63 @@ fun CreateBizCard(){
         .fillMaxHeight()) {
         Card(modifier = Modifier
             .width(412.dp)
-            .height(390.dp)
+            .height(300.dp)
             .padding(12.dp),
             shape = RoundedCornerShape(corner = CornerSize(15.dp)),
             colors = CardDefaults.cardColors(containerColor = Color.White),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)) {
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp),
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally) {
+                .fillMaxHeight(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally) {
                 CreatorImageProfile()
                 Divider(thickness = 2.dp, color = Color.Black)
                 CreateInfo()
                 Button(onClick = {
                     buttonClickedState.value = !buttonClickedState.value
-                }){
+                }
+                ){
                     Text(text = "Portfolio", style = MaterialTheme.typography.displayMedium)
                 }
                 if(buttonClickedState.value){
                     Content()
+                    Text(text = "hello")
                 }else{
-                    Box() {
+                    Box {
                     }
                 }
             }
         }
     }
 }
-@Preview
+//@Preview
 @Composable
 fun Content(){
     Box(modifier = Modifier
         .fillMaxHeight()
         .fillMaxWidth()
-        .padding(5.dp)){
+        .padding(5.dp)){}
         Surface(modifier = Modifier
+            .padding(3.dp)
             .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(3.dp),
+            .fillMaxHeight(),
                 shape = RoundedCornerShape(corner = CornerSize(6.dp)),
                 border = BorderStroke(width = 2.dp,
-                color = Color.LightGray)
-        ){
-            Portfolio(data = listOf("Project 1", "Project 2", "Project 3"))
+                color = Color.LightGray)) {
+            Portfolio(data = listOf("Project 1",
+                "Project 2",
+                "Project 3",
+                "Project 4"))
         }
-    }
 }
 
 @Composable
 fun Portfolio(data: List<String>) {
     LazyColumn{
-        items(data){ item -> Text(item)}
+        items(data) { item ->
+            Text(item)
+        }
     }
 }
 
@@ -154,7 +159,7 @@ private fun CreatorImageProfile() {
     }
 }
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun DefaultPreview(){
     JetBizCardTheme {
